@@ -1,11 +1,12 @@
 import numpy as np
 
 class Neuron:
-    def __init__(self, weight, bias, summation = 0, function_type = 0):
+    def __init__(self, weight, bias, summation = 0, function_type = 0, entries: list = []):
         self.weight = weight
         self.bias = bias
         self.summation = summation
         self._function_type = function_type
+        self.entries = entries
 
     @property
     def function_type(self): #Default is ReLU as defined above
@@ -30,9 +31,11 @@ class Neuron:
     def output(self):
         return self.activation_function()
 
-    def sum_iteration(self, x_value):
-        result = x_value * self.weight + self.bias
-        self.summation = self.summation + result
+    def sum_iteration(self):
+        for i in self.entries:
+            result = i * self.weight + self.bias
+            self.summation += result
+
 
 
 
