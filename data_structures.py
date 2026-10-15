@@ -30,8 +30,8 @@ class Neuron:
             self.output = result
             return self.output
         else:
-            print("ERROR: NO ACTIVATION FUNCTION")
-            return 1
+            raise ValueError("ERROR: NO ACTIVATION FUNCTION DEFINED")
+
 
     def y_hat(self):
         return self.activation_function()
