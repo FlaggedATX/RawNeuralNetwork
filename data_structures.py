@@ -34,9 +34,11 @@ class Neuron:
 
 
     def y_hat(self):
+        self.sum_iteration()
         return self.activation_function()
 
     def sum_iteration(self):
+        self.summation = 0
         for i in self.entries:
             result = i * self.weight
             self.summation += result
