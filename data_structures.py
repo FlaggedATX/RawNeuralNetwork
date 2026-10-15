@@ -1,12 +1,13 @@
 import numpy as np
 
 class Neuron:
-    def __init__(self, weight, bias, summation = 0, function_type = 0, entries: list = []):
+    def __init__(self, weight, bias, summation = 0, function_type = 0, entries: list = [], connections: list = []):
         self.weight = weight
         self.bias = bias
         self.summation = summation
         self._function_type = function_type
         self.entries = entries
+        self.connections = connections
 
     @property
     def function_type(self): #Default is ReLU as defined above
