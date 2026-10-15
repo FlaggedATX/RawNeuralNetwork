@@ -1,13 +1,14 @@
 import numpy as np
 
 class Neuron:
-    def __init__(self, weight, bias, summation = 0, function_type = 0, entries: list = [], connections: list = []):
+    def __init__(self, weight, bias, summation = 0, output: float = 0, function_type = 0, entries: list = None, connections: list = None):
         self.weight = weight
         self.bias = bias
         self.summation = summation
+        self.output = output
         self._function_type = function_type
-        self.entries = entries
-        self.connections = connections
+        self.entries = entries or []
+        self.connections = connections or []
 
     @property
     def function_type(self): #Default is ReLU as defined above
@@ -16,26 +17,30 @@ class Neuron:
     def activation_function(self):
         if self.function_type == 0: #ReLU
             if self.summation <= 0:
-                return 0
+                self.output = 0
+                return self.output
             else:
-                return self.summation
+                self.output = self.summation
+                return self.output
 
         elif self.function_type == 1: #Sigmoid
             euler = np.e
             x = -1 * self.summation
             result = 1 / (1 + (np.power(euler, x)))
-            return result
+            self.output = result
+            return self.output
         else:
             print("ERROR: NO ACTIVATION FUNCTION")
             return 1
 
-    def output(self):
+    def y_hat(self):
         return self.activation_function()
 
     def sum_iteration(self):
         for i in self.entries:
-            result = i * self.weight + self.bias
+            result = i * self.weight
             self.summation += result
+        self.summation += self.bias
 
 
 
