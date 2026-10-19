@@ -46,9 +46,10 @@ class Neuron:
 
 
 
-
 class Layer:
-    pass
+    def __init__(self, neurons: list = None):
+        self.neurons = neurons or []
+
 
 
 
