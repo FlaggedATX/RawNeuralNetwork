@@ -51,14 +51,16 @@ class Layer:
         self.neurons = neurons or []
 
 
-
-
-
 class NeuralNetwork:
     def __init__(self, layers: list = None):
         self.layers = layers or []
-
+        self.first_layer = self.layers[0] or None
 
 class Loss:
-    def __init__(self, Network):
-        self.Network = Network
+    def __init__(self):
+        pass
+    def backpropagation(self, Network):
+        for neuron in Network.layers[0]:
+            pass
+
+
