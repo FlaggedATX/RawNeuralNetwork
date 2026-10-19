@@ -55,9 +55,10 @@ class Layer:
 
 
 class NeuralNetwork:
-    pass
+    def __init__(self, layers: list = None):
+        self.layers = layers or []
 
 
 class Loss:
-    def __init__(self, layer):
-        self.layer = layer
+    def __init__(self, Network):
+        self.Network = Network
