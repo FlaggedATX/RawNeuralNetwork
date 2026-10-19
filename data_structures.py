@@ -58,3 +58,6 @@ class NeuralNetwork:
     pass
 
 
+class Loss:
+    def __init__(self, layer):
+        self.layer = layer
