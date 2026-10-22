@@ -60,7 +60,7 @@ class Loss:
     def __init__(self):
         pass
     def backpropagation(self, Network):
-        for neuron in Network.layers[0]:
+        for neuron in Network.layers[0].neurons:
             pass
 
 
