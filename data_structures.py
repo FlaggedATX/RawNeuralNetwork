@@ -11,7 +11,7 @@ class Neuron:
         self.output = output
 
         self._function_type = function_type
-        
+
         self.connections = connections or []
 
     @property
@@ -43,9 +43,11 @@ class Neuron:
 
     def sum_iteration(self):
         self.summation = 0
-        result = self.weight * self.entry + self.bias
-        self.summation += result
 
+        for index, entry in enumerate(self.entries):
+            result = entry * self.weight[index]
+            self.summation += result
+        self.summation += self.bias
 
 
 class Layer:
