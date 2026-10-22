@@ -1,13 +1,17 @@
 import numpy as np
 
 class Neuron:
-    def __init__(self, weight, bias, summation = 0, output: float = 0, function_type = 0, entries: list = None, connections: list = None):
+    def __init__(self, weight: list, bias, summation = 0, output: float = 0, function_type = 0, entries: list = None, connections: list = None):
         self.weight = weight
-        self.bias = bias
-        self.summation = summation
-        self.output = output
-        self._function_type = function_type
         self.entries = entries or []
+        self.bias = bias
+
+        self.summation = summation
+
+        self.output = output
+
+        self._function_type = function_type
+        
         self.connections = connections or []
 
     @property
@@ -39,10 +43,8 @@ class Neuron:
 
     def sum_iteration(self):
         self.summation = 0
-        for i in self.entries:
-            result = i * self.weight
-            self.summation += result
-        self.summation += self.bias
+        result = self.weight * self.entry + self.bias
+        self.summation += result
 
 
 
@@ -52,9 +54,11 @@ class Layer:
 
 
 class NeuralNetwork:
-    def __init__(self, layers: list = None):
-        self.layers = layers or []
-        self.first_layer = self.layers[0] or None
+    def __init__(self, layers: list):
+        if not layers:
+            raise ValueError("ERROR: No layers defined")
+        self.layers = layers
+        self.first_layer = self.layers[0]
 
 class Loss:
     def __init__(self):
